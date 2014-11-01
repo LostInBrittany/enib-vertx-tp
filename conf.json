@@ -1,0 +1,11 @@
+// Example JSON config file
+
+{
+  "foo": "bar",
+
+  "mongo" : {
+    "host":"localhost",
+    "port":27017,
+    "dbname":"enib"
+  }
+}

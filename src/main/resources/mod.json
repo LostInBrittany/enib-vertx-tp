@@ -1,0 +1,4 @@
+{
+  "main": "com.enib.cai.vertx.verticle.EnibarVerticle",
+  "auto-redeploy": true
+}
