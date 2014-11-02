@@ -30,14 +30,9 @@ public class GuiceModule extends AbstractModule {
         .annotatedWith(Names.named("mongo"))
         .toInstance(mongoConfig);
 
-
-
     bind(DB.class).toProvider(MongoProvider.class).in(Singleton.class);
 
-    bind(SayPong.class).in(Singleton.class);
 
-    //bind(Beers.class).to(StaticBeers.class).in(Singleton.class);
-    bind(Beers.class).to(MongoBeersImpl.class).in(Singleton.class);
     bind(Files.class).to(FIlesImpl.class).in(Singleton.class);
   }
 }

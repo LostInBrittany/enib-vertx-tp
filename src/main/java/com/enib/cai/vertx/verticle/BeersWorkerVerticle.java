@@ -12,7 +12,6 @@ import javax.inject.Inject;
 
 public class BeersWorkerVerticle extends AbstractGuiceVerticle {
 
-  @Inject
   private Beers beers;
 
   @Override

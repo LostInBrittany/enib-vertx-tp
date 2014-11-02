@@ -76,9 +76,23 @@ This verticle deploy programmaticly :
    
     req.response.end("content sended to the user agent");
    
-   It works... but dammed the images are no displayed!!! #WTF? go to the next step
+   #Dammed, I have a NPE (NullPointerException or NullProfessorException) 
+   The service always respond "Huston we have a problem" on the eventbus #WTF???
    
-# Step 5 - serve the images
+# Step 5 - inject the service
+  In BeersWorkerVerticle.java the Beers service is not injected. Adds @Inject annotation just before.
+  
+  But the Beers interface is not binded with Guice.
+  
+  So bind the interface Beers.class to MongoBeersImpl.class in the scope Singleton
+
+  Test your api 
+  [beers](http://localhost:44081/api/beers/beeers)
+  [Affligem](http://localhost:44081/api/beers/AffligemBlond)
+
+  It works... but dammed the images are no displayed!!! #WTF? go to the next step
+
+# Step 6 - serve the images
 
   If you look at the JSON feed the images are served on the URI /img/<filename>
   
@@ -92,7 +106,8 @@ This verticle deploy programmaticly :
  Warning before write data to the response you should add the header "Content-Length" to the response... 
  [reasons, the truth is in the RFC](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html)
  
-# Step 6 - hack the app
+ But easy with vert.x... req.response().putHeader("Content-Length", 176437647);
+# Step 7- hack the app
 
 Ok, having the list of beers, is fun but can you add one with a form ???
 

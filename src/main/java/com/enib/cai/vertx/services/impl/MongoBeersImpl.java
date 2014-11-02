@@ -1,5 +1,6 @@
 package com.enib.cai.vertx.services.impl;
 
+import com.enib.cai.vertx.model.Beer;
 import com.enib.cai.vertx.services.Beers;
 import com.mongodb.*;
 import org.vertx.java.core.json.JsonArray;
@@ -92,5 +93,33 @@ public class MongoBeersImpl implements Beers {
       }
     }
     return beer;
+  }
+
+  @Override
+  public JsonObject addBeer(Beer beer) throws Exception {
+    try {
+      DBCollection beersCollection = db.getCollection("beers");
+
+      DBObject dbBeer = new BasicDBObject();
+
+      dbBeer.put("alcohol", beer.alcohol);
+      dbBeer.put("description", beer.description);
+      dbBeer.put("_id", beer.id);
+      dbBeer.put("img", beer.img);
+      dbBeer.put("name", beer.name);
+      dbBeer.put("availability", beer.availability);
+      dbBeer.put("brewery", beer.brewery);
+      dbBeer.put("label", beer.label);
+      dbBeer.put("serving", beer.serving);
+      dbBeer.put("style", beer.style);
+
+      beersCollection.insert(dbBeer).getLastError().throwOnError();
+
+      return getBeer(beer.id);
+    } catch(com.mongodb.MongoException.DuplicateKey exp) {
+      throw new Exception("already exists");
+    } catch (Exception e) {
+      throw e;
+    }
   }
 }

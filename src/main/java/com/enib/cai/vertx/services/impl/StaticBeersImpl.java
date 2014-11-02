@@ -70,4 +70,10 @@ public class StaticBeersImpl implements Beers {
     return beer;
   }
 
+  @Override
+  public JsonObject addBeer(Beer beer) throws Exception {
+    beers.put(beer.id, beer);
+    return getBeer(beer.id);
+  }
+
 }
