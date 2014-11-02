@@ -6,10 +6,6 @@ import org.vertx.java.core.Handler;
 import org.vertx.java.core.http.HttpServerRequest;
 import org.vertx.java.platform.Verticle;
 
-/**
- * User: lambour
- * Date: 14/10/14 22:02
- */
 public class HelloWorldVerticle extends Verticle {
   @Inject
   public SayPong sayPong;

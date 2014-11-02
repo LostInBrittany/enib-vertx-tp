@@ -10,11 +10,6 @@ import org.vertx.java.platform.VerticleFactory;
 import org.vertx.java.platform.impl.java.CompilingClassLoader;
 import org.vertx.java.platform.impl.java.JavaVerticleFactory;
 
-/**
- * User: lambour
- * Date: 14/10/14 22:47
- * Copyright: Cityzen Data
- */
 public class GuiceVerticleFactory extends JavaVerticleFactory {
   private Injector injector;
 

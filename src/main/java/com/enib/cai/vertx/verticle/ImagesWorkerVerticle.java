@@ -13,11 +13,6 @@ import org.vertx.java.platform.Verticle;
 
 import javax.inject.Inject;
 
-/**
- * User: lambour
- * Date: 02/11/14 11:20
- * Copyright: Cityzen Data
- */
 public class ImagesWorkerVerticle extends Verticle {
   private Injector injector;
 

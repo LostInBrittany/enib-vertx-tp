@@ -8,11 +8,6 @@ import org.vertx.java.core.http.HttpServerRequest;
 import org.vertx.java.core.http.RouteMatcher;
 import org.vertx.java.platform.Verticle;
 
-/**
- * User: lambour
- * Date: 30/10/14 22:07
- * Copyright: Cityzen Data
- */
 public class EnibarVerticle extends Verticle {
 
   public void start() {

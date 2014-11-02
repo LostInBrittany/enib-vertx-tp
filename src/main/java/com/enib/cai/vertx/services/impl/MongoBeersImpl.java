@@ -1,22 +1,12 @@
 package com.enib.cai.vertx.services.impl;
 
-import com.enib.cai.vertx.model.Beer;
 import com.enib.cai.vertx.services.Beers;
 import com.mongodb.*;
-import com.mongodb.util.JSON;
-import org.bson.BSONObject;
 import org.vertx.java.core.json.JsonArray;
 import org.vertx.java.core.json.JsonObject;
 
 import javax.inject.Inject;
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * User: lambour
- * Date: 01/11/14 21:18
- * Copyright: Cityzen Data
- */
 public class MongoBeersImpl implements Beers {
 
   // MongoDB driver

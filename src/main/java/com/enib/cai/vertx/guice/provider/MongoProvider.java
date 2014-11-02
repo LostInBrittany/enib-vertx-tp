@@ -17,12 +17,6 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
-/**
- * User: lambour
- * Date: 01/11/14 22:06
- * Copyright: Cityzen Data
- */
 public class MongoProvider implements Provider<DB> {
 
   @Inject

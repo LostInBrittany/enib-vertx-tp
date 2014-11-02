@@ -8,11 +8,6 @@ import org.vertx.java.core.json.JsonObject;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * User: lambour
- * Date: 01/11/14 21:18
- * Copyright: Cityzen Data
- */
 public class StaticBeersImpl implements Beers {
   
   private Map<String, Beer> beers = new HashMap<>();

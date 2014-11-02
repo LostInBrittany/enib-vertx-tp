@@ -8,11 +8,6 @@ import com.mongodb.gridfs.GridFSDBFile;
 import javax.inject.Inject;
 import java.io.ByteArrayOutputStream;
 
-/**
- * User: lambour
- * Date: 01/11/14 23:45
- * Copyright: Cityzen Data
- */
 public class FIlesImpl implements Files {
   public byte[] get(String name) {
     try {

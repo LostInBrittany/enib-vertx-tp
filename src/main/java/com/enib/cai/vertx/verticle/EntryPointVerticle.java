@@ -2,11 +2,6 @@ package com.enib.cai.vertx.verticle;
 
 import org.vertx.java.platform.Verticle;
 
-/**
- * User: lambour
- * Date: 02/11/14 10:20
- * Copyright: Cityzen Data
- */
 public class EntryPointVerticle extends Verticle {
 
   public void start() {

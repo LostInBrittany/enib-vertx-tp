@@ -13,11 +13,6 @@ import com.mongodb.DB;
 import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.platform.Container;
 
-/**
- * User: lambour
- * Date: 14/10/14 23:10
- * Copyright: Cityzen Data
- */
 public class GuiceModule extends AbstractModule {
 
   private Container container;

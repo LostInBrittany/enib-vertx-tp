@@ -2,7 +2,6 @@ package com.enib.cai.vertx.verticle;
 
 import com.enib.cai.vertx.guice.GuiceModule;
 import com.enib.cai.vertx.services.Beers;
-import com.enib.cai.vertx.services.Files;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.vertx.java.core.Handler;
@@ -12,19 +11,11 @@ import org.vertx.java.platform.Verticle;
 
 import javax.inject.Inject;
 
-/**
- * User: lambour
- * Date: 02/11/14 11:20
- * Copyright: Cityzen Data
- */
 public class BeersWorkerVerticle extends Verticle {
   private Injector injector;
 
   @Inject
   private Beers beers;
-
-  @Inject
-  private Files files;
 
   public void start() {
     System.out.println("deploy enibar worker verticle");
