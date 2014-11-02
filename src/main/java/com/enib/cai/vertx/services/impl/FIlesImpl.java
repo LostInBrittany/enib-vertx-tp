@@ -4,11 +4,16 @@ import com.enib.cai.vertx.services.Files;
 import com.mongodb.DB;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
+import com.mongodb.gridfs.GridFSInputFile;
 
 import javax.inject.Inject;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 public class FIlesImpl implements Files {
+  @Inject
+  private DB db;
+
   public byte[] get(String name) {
     try {
       GridFS gfsPhoto = new GridFS(db, "img");
@@ -23,6 +28,11 @@ public class FIlesImpl implements Files {
     return null;
   }
 
-  @Inject
-  private DB db;
+  @Override
+  public void put(byte[] data, String name) {
+    GridFS gfsImages = new GridFS(db, "img");
+    GridFSInputFile gfsFile = gfsImages.createFile(data);
+    gfsFile.setFilename(name);
+    gfsFile.save();
+  }
 }

@@ -1,17 +1,13 @@
 package com.enib.cai.vertx.guice;
 
 import com.enib.cai.vertx.guice.provider.MongoProvider;
-import com.enib.cai.vertx.services.Beers;
 import com.enib.cai.vertx.services.Files;
-import com.enib.cai.vertx.services.SayPong;
 import com.enib.cai.vertx.services.impl.FIlesImpl;
-import com.enib.cai.vertx.services.impl.MongoBeersImpl;
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.mongodb.DB;
 import org.vertx.java.core.json.JsonObject;
-import org.vertx.java.platform.Container;
 
 public class GuiceModule extends AbstractModule {
 
@@ -32,6 +28,7 @@ public class GuiceModule extends AbstractModule {
 
     bind(DB.class).toProvider(MongoProvider.class).in(Singleton.class);
 
+    // MAYBE ALL MongoBeerImpl is not binded ???
 
     bind(Files.class).to(FIlesImpl.class).in(Singleton.class);
   }
