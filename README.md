@@ -88,7 +88,7 @@ This verticle deploy programmaticly :
   So bind the interface Beers.class to MongoBeersImpl.class in the scope Singleton
 
   Test your api 
-  [beers](http://localhost:44081/api/beers/beeers)
+  [beers](http://localhost:44081/api/beers/beers)
   [Affligem](http://localhost:44081/api/beers/AffligemBlond)
 
   It works... but dammed the images are no displayed!!! #WTF? go to the next step
