@@ -21,35 +21,11 @@ public class EnibarVerticle extends Verticle {
 
     RouteMatcher routeMatcher = new RouteMatcher();
 
-    // API Route Matcher send to the event bus
-    routeMatcher.get("/api/beers/:id", new Handler<HttpServerRequest>() {
-      public void handle(final HttpServerRequest req) {
-        String id = req.params().get("id");
-        // send the message throw the eventbus
-        eb.send("beers.service", id, new Handler<Message<String>>() {
-          public void handle(Message<String> message) {
-            // get the response from the eventbus and send it as response
-            System.out.println("I received a reply before the timeout of 5 seconds");
-            req.response().end(message.body());
-          }
-        });
-      }
-    });
+    // API Route Matcher /api/beers/{beers or beerid}
+    // STEP 2 Add here the /api/beers route matcher
 
-    // API Route Matcher send to the event bus
-    routeMatcher.get("/img/:name", new Handler<HttpServerRequest>() {
-      public void handle(final HttpServerRequest req) {
-        String filename = req.params().get("name");
+    // Images Route Matcher /img/{fileName}
 
-        eb.send("images.service", filename, new Handler<Message<Buffer>>() {
-          public void handle(Message<Buffer> message) {
-            req.response().putHeader("Content-Length", Integer.toString(message.body().length()));
-            req.response().write(message.body());
-            req.response().end();
-          }
-        });
-      }
-    });
 
     // otherwise  send file
     routeMatcher.noMatch(new Handler<HttpServerRequest>() {

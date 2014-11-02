@@ -31,4 +31,35 @@ Open the project with intelliJ
  
  Enjoy vert.x serves your AngularBeers project
 
-# Step 1 - open and run the project #
+# Step 2 - Create an route for the api path #
+
+The module starts the EntryPointVerticle (declared in the mod.json)
+This verticle deploy programmaticly :
+  - EnibVerticle (the eventloop verticle)
+  - BeersWorkerVerticle (worker verticle provides the beers list and details)
+  - ImagesWorkerVerticle (worker verticle provider the beer images)
+  
+    routeMatcher.put("/static_path/:param_path", new Handler<HttpServerRequest>() {
+        public void handle(HttpServerRequest req) {
+            String paramPath = req.params().get("param_path");
+
+            req.response().end("hello my param path is " + paramPath);
+        }
+    });
+    
+   - on /api/beers/beers serve the JSONObject produced by StaticBeersImpl
+   - on /api/beers/AffligemBlond serve the details of the beer
+   
+   Option you can try to inject StaticBeersImpl 
+    
+   Test your api 
+   [beers](http://localhost:44081/api/beers/beeers)
+   [Affligem](http://localhost:44081/api/beers/AffligemBlond)
+   
+# Step 3 - Plug the Angular JS view
+ 
+ Modify services.js in order to read the api uri 
+ Now your view is served by your API
+  
+  
+   
