@@ -29,16 +29,7 @@ public class GuiceModule extends AbstractModule {
   @Override
   protected void configure() {
     //get the vertx configuration
-
-    // BUG
-    // FAIL THE CONFIG IS NOT YEY INITIALIZED
-
-    //container.config().getObject("mongo");
-    JsonObject mongoConfig = new JsonObject();
-
-    mongoConfig.putString("host","localhost");
-    mongoConfig.putNumber("port", 27017);
-    mongoConfig.putString("dbname","enib");
+    JsonObject mongoConfig = container.config().getObject("mongo");
 
     bind(JsonObject.class)
         .annotatedWith(Names.named("mongo"))

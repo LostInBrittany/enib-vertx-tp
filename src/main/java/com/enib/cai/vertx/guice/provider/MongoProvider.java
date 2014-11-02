@@ -38,7 +38,8 @@ public class MongoProvider implements Provider<DB> {
       try {
         mongo = new MongoClient(config.getString("host"), config.getInteger("port"));
 
-        staticInit();
+        String path = config.getString("staticImgs");
+        staticInit(path);
 
       } catch (UnknownHostException e) {
         e.printStackTrace();
@@ -49,7 +50,7 @@ public class MongoProvider implements Provider<DB> {
   }
 
 
-  private void staticInit() {
+  private void staticInit(String path) {
     // Do the static data injection
     // init the beers
     DB db = mongo.getDB(config.getString("dbname"));
@@ -67,18 +68,21 @@ public class MongoProvider implements Provider<DB> {
         "}");
     db.getCollection("beers").save(bson);
 
-    try {
-      //grid fs img
-      GridFS gfsImages = new GridFS(db, "img");
-      File actual = new File("./web/beers/img");
-      for( File f : actual.listFiles()){
-        String fileName = f.getName();
-        GridFSInputFile gfsFile = gfsImages.createFile(f);
-        gfsFile.setFilename(fileName);
-        gfsFile.save();
+    if (path != null) {
+      System.out.println("load images path=" + path);
+      try {
+        //grid fs img
+        GridFS gfsImages = new GridFS(db, "img");
+        File actual = new File(path);
+        for (File f : actual.listFiles()) {
+          String fileName = f.getName();
+          GridFSInputFile gfsFile = gfsImages.createFile(f);
+          gfsFile.setFilename(fileName);
+          gfsFile.save();
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
-    } catch (IOException e) {
-      e.printStackTrace();
     }
   }
 
