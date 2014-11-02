@@ -24,6 +24,7 @@ Open the project with intelliJ
  - accept the gradle import
  - in the project settings (F4)
    - check the JDK (8) and language level (7)
+   - set Project / Project compiler output path to [...]/enib-vertx-tp/out
    - select "inherit project compile output path" in modules / paths
  - build the project (Build/make project)
  - in the terminal run './gradlew runMod -i'
