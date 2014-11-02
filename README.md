@@ -12,6 +12,7 @@ Ok, build a backend with vertx is not painfull let's go.
  - You have IntelliJ installed on your desktop
  - a JDK 7 or upper
  - last vert.x version
+ - mongodb running
  
 Ok go ahead !
  
@@ -61,5 +62,39 @@ This verticle deploy programmaticly :
  Modify services.js in order to read the api uri 
  Now your view is served by your API
   
+# Step 4 - get the beers from the event bus
   
+  Send the name of the service 'beers or <beer_id>' to the address 'beers.service'
+  
+    eb.send("ADDRESS", DATA_TO_SEND, new Handler<Message<String>>() {
+     public void handle(Message<String> eventBusResponse) {       
+       System.out.println("Yeah the response is " + message.body() );
+     }
+    });
+  
+   The reply on the EventBus if the JSON flow of the request. You send it directly.
    
+    req.response.end("content sended to the user agent");
+   
+   It works... but dammed the images are no displayed!!! #WTF? go to the next step
+   
+# Step 5 - serve the images
+
+  If you look at the JSON feed the images are served on the URI /img/<filename>
+  
+  You're now a vert.x rock star, so:
+   
+   - create the route /img/<filename> in the EnibarVerticle
+   - send the message <filename> at the address "images.service" on the eventbus
+   - the reply is a type "Buffer"
+   - write the buffer content to the user agent
+   
+ Warning before write data to the response you should add the header "Content-Length" to the response... 
+ [reasons, the truth is in the RFC](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html)
+ 
+# Step 6 - hack the app
+
+Ok, having the list of beers, is fun but can you add one with a form ???
+
+On the uri /api/beers/add
+
