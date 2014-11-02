@@ -55,7 +55,7 @@ This verticle deploy programmaticly :
    Option you can try to inject StaticBeersImpl 
     
    Test your api 
-   [beers](http://localhost:44081/api/beers/beeers)
+   [beers](http://localhost:44081/api/beers/beers)
    [Affligem](http://localhost:44081/api/beers/AffligemBlond)
    
 # Step 3 - Plug the Angular JS view
