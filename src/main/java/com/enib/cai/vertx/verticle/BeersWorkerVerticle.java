@@ -7,23 +7,18 @@ import com.google.inject.Injector;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.eventbus.EventBus;
 import org.vertx.java.core.eventbus.Message;
-import org.vertx.java.platform.Verticle;
 
 import javax.inject.Inject;
 
-public class BeersWorkerVerticle extends Verticle {
-  private Injector injector;
+public class BeersWorkerVerticle extends AbstractGuiceVerticle {
 
   @Inject
   private Beers beers;
 
+  @Override
   public void start() {
+    super.start();
     System.out.println("deploy enibar worker verticle");
-
-    System.out.println("inject dependencies");
-    injector = Guice.createInjector(new GuiceModule(container));
-    injector.injectMembers(this);
-
 
     EventBus eb = vertx.eventBus();
 
@@ -43,6 +38,7 @@ public class BeersWorkerVerticle extends Verticle {
           }
         }catch(Exception exp) {
           response = "Huston we have a problem";
+          exp.printStackTrace();
         }
 
         // Now reply to it

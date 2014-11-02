@@ -1,11 +1,17 @@
 package com.enib.cai.vertx.verticle;
 
+import com.enib.cai.vertx.guice.GuiceModuleHolder;
+import com.google.inject.Injector;
+import org.vertx.java.core.json.JsonObject;
 import org.vertx.java.platform.Verticle;
 
 public class EntryPointVerticle extends Verticle {
 
   public void start() {
     System.out.println("deploy entry point verticle");
+
+    JsonObject config = container.config();
+    System.out.println("config=" + config.toString());
 
     //deploy worker verticles
     container.deployWorkerVerticle("com.enib.cai.vertx.verticle.BeersWorkerVerticle", container.config(), 4);

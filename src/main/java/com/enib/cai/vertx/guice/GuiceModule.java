@@ -15,16 +15,16 @@ import org.vertx.java.platform.Container;
 
 public class GuiceModule extends AbstractModule {
 
-  private Container container;
+  private JsonObject config;
 
-  public GuiceModule(Container container){
-    this.container = container;
+  public GuiceModule(JsonObject config){
+    this.config = config;
   }
 
   @Override
   protected void configure() {
     //get the vertx configuration
-    JsonObject mongoConfig = container.config().getObject("mongo");
+    JsonObject mongoConfig = config.getObject("mongo");
 
     bind(JsonObject.class)
         .annotatedWith(Names.named("mongo"))
